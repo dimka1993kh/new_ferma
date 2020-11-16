@@ -26,6 +26,7 @@ class Milk_true(Animal):
     # Метод "Подоить"
     def milk_animal(self):
         print(f'Вам удалось выдоить молоко. {self.type_animal} {self.name} доволна!')
+
     # Метод "Вычисать животное"
     def comb(self):
         print(f'Вы вычесали животное. {self.type_animal} {self.name} теперь красивая!')
