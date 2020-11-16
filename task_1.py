@@ -1,4 +1,6 @@
 from random import randint
+
+# Родительский класс
 class  Animal:
     def __init__(self, type_animal, name, weight):
         self.type_animal = type_animal
@@ -7,24 +9,28 @@ class  Animal:
     def feed(self):
         self.weight += 1
         print(f'{self.type_animal} {self.name} накормелн(а). {self.name} набрала в весе и теперь весит {self.weight} кг')
-    # def individual_approach(self):
-    #     if self.type_animal == 'Гусь' or self.type_animal == 'Курица' or self.type_animal == 'Утка':
-    #         print(f'{self.type_animal} {self.name} снесла яйца! Вы собрали {randint(1, 10)} яйца')
-    #     elif self.type_animal == 'Корова' or self.type_animal == 'Овца' or self.type_animal == 'Коза':
-    #         print(f'Вам удалось выдоить молоко. {self.type_animal} {self.name} доволна!')
     
-
+# Дочерний класс "Птица"
 class Bird(Animal):
+    def __init__(self, type_animal, name, weight):
+        super().__init__(type_animal, name, weight)
+    # Метод "Собрать яйца"    
     def collect_eggs(self):
         print(f'{self.type_animal} {self.name} снесла яйца! Вы собрали {randint(1, 10)} яйца')
 
+# Дочерний класс "Животные, имеющие молоко"
 
 class Milk_true(Animal):
+    def __init__(self, type_animal, name, weight):
+        super().__init__(type_animal, name, weight)
+    # Метод "Подоить"
     def milk_animal(self):
         print(f'Вам удалось выдоить молоко. {self.type_animal} {self.name} доволна!')
+    # Метод "Вычисать животное"
     def comb(self):
         print(f'Вы вычесали животное. {self.type_animal} {self.name} теперь красивая!')
 
+# Функция "Взвешивания всех животных"
 def sum_wight_animals(list_animals):
     sum_wight = 0
     for animal in list_animals:
@@ -33,6 +39,7 @@ def sum_wight_animals(list_animals):
         sum_wight += animal.weight
     return print(f'Вес всех животных составляет {sum_wight} кг')
 
+# Функция определения самого тяжелого животного
 def max_wieght(list_animals):
     weight_dict = {}
     for animal in list_animals:
@@ -42,9 +49,10 @@ def max_wieght(list_animals):
     return print(f'Имя самого тяжелого животного {sorted(list(weight_dict.items()), key=lambda x: x[1])[-1][0]}. Его вес {sorted(list(weight_dict.items()), key=lambda x: x[1])[-1][1]} кг')
 
 
-
+# Входной словарь данных
 type_animal_dict = {'Гусь': [2, ['Серый', 'Белый'], [5, 7]], 'Корова' : [1, ['Манька'], [100]], 'Овца' : [2, ['Барашек', 'Кудрявый'], [46, 54]], 'Курица' : [2, ['Ко-Ко', 'Кукареку'], [3, 5]], 'Коза' : [2, ['Рога', 'Копыта'], [7, 10]], 'Утка' : [1, ['Кряква'], [6]]}
 
+# Запишем массив с экземплярами классов
 animals = []
 
 for animal in list(type_animal_dict.items()):
