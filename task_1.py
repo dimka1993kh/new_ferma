@@ -7,14 +7,23 @@ class  Animal:
     def feed(self):
         self.weight += 1
         print(f'{self.type_animal} {self.name} накормелн(а). {self.name} набрала в весе и теперь весит {self.weight} кг')
-    def individual_approach(self):
-        if self.type_animal == 'Гусь' or self.type_animal == 'Курица' or self.type_animal == 'Утка':
-            print(f'{self.type_animal} {self.name} снесла яйца! Вы собрали {randint(1, 10)} яйца')
-        elif self.type_animal == 'Корова' or self.type_animal == 'Овца' or self.type_animal == 'Коза':
-            print(f'Вам удалось выдоить молоко. {self.type_animal} {self.name} доволна!')
+    # def individual_approach(self):
+    #     if self.type_animal == 'Гусь' or self.type_animal == 'Курица' or self.type_animal == 'Утка':
+    #         print(f'{self.type_animal} {self.name} снесла яйца! Вы собрали {randint(1, 10)} яйца')
+    #     elif self.type_animal == 'Корова' or self.type_animal == 'Овца' or self.type_animal == 'Коза':
+    #         print(f'Вам удалось выдоить молоко. {self.type_animal} {self.name} доволна!')
+    
+
+class Bird(Animal):
+    def collect_eggs(self):
+        print(f'{self.type_animal} {self.name} снесла яйца! Вы собрали {randint(1, 10)} яйца')
+
+
+class Milk_true(Animal):
+    def milk_animal(self):
+        print(f'Вам удалось выдоить молоко. {self.type_animal} {self.name} доволна!')
     def comb(self):
-        if self.type_animal == 'Корова' or self.type_animal == 'Овца' or self.type_animal == 'Коза':
-            print(f'Вы вычесали животное. {self.type_animal} {self.name} теперь красивая!')
+        print(f'Вы вычесали животное. {self.type_animal} {self.name} теперь красивая!')
 
 def sum_wight_animals(list_animals):
     sum_wight = 0
@@ -40,8 +49,12 @@ animals = []
 
 for animal in list(type_animal_dict.items()):
     for i in range(int(animal[1][0])):
-        enter_animal = Animal(animal[0], animal[1][1][i], animal[1][2][i])
-        animals.append(enter_animal)
+        if animal[0] == 'Гусь' or animal[0] == 'Курица' or animal[0] == 'Утка':
+            enter_animal = Bird(animal[0], animal[1][1][i], animal[1][2][i])
+            animals.append(enter_animal)
+        elif animal[0] == 'Корова' or animal[0] == 'Овца' or animal[0] == 'Коза':
+            enter_animal = Milk_true(animal[0], animal[1][1][i], animal[1][2][i])
+            animals.append(enter_animal)
 
 # Для проверки записи всех животных в список выведем проверку наличия имен
 # for index, animal in enumerate(animals):
@@ -52,3 +65,8 @@ goose_1, goose_2, cow, sheep_1, sheep_2, chiken_1, chiken_2, goat_1, goat_2, duc
 
 sum_wight_animals(animals)
 max_wieght(animals)
+
+for animal in animals:
+    # print(f'{animal.type_animal} {animal.name}:')
+    print()
+    animal.feed()
